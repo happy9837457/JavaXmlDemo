@@ -20,6 +20,7 @@ import com.palm.xml.share.bean.User;
 public class SaxHandler extends DefaultHandler {
 	public User user = new User();
 	private String curElement;
+	private Attributes curAttributes;
 	public List<String> permissions;
 	public List<Bank> banks;
 	public Bank bank;
@@ -38,6 +39,7 @@ public class SaxHandler extends DefaultHandler {
 	public void startElement(String uri, String localName, String name,
 			Attributes attributes) throws SAXException {
 		curElement = name;
+		curAttributes = attributes;
 		isStart = true;
 	}
 
@@ -61,6 +63,7 @@ public class SaxHandler extends DefaultHandler {
 			banks = new ArrayList<Bank>();
 		} else if ("bank".equals(curElement)) {
 			bank = new Bank();
+			bank.setType(curAttributes.getValue("type"));
 		} else if ("bankId".equals(curElement)) {
 			bank.setBankId(content);
 		} else if ("bankName".equals(curElement)) {

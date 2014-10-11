@@ -50,8 +50,9 @@ public class Dom4jParser {
 		List<Node> bankNodes = root.selectNodes("//banks/bank");
 		List<Bank> banks = new ArrayList<Bank>();
 		for (Node bankNode : bankNodes) {
-			banks.add(new Bank(bankNode.selectSingleNode("bankId").getText(),
-					bankNode.selectSingleNode("bankName").getText()));
+			banks.add(new Bank(bankNode.selectSingleNode("@type").getText(),
+					bankNode.selectSingleNode("bankId").getText(), bankNode
+							.selectSingleNode("bankName").getText()));
 		}
 		user.setBanks((ArrayList<Bank>) banks);
 		return user;
@@ -75,6 +76,7 @@ public class Dom4jParser {
 		Element banksElement = root.addElement("banks");
 		for (Bank bank : banks) {
 			Element bankElement = banksElement.addElement("bank");
+			bankElement.addAttribute("type", bank.getType());
 			bankElement.addElement("bankId").addText(bank.getBankId());
 			bankElement.addElement("bankName").addText(bank.getBankName());
 		}

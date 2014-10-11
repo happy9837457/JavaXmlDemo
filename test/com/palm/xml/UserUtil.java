@@ -28,14 +28,8 @@ public class UserUtil {
 		permissions.add("queryUser");
 		user.setPermissions(permissions);
 		ArrayList<Bank> banks = new ArrayList<Bank>();
-		Bank bankA = new Bank();
-		bankA.setBankId("101");
-		bankA.setBankName("中国农业银行");
-		banks.add(bankA);
-		Bank bankB = new Bank();
-		bankB.setBankId("102");
-		bankB.setBankName("中国工商银行");
-		banks.add(bankB);
+		banks.add(new Bank("1", "101", "中国农业银行"));
+		banks.add(new Bank("2", "102", "中国工商银行"));
 		user.setBanks(banks);
 		return user;
 	}
@@ -55,7 +49,7 @@ public class UserUtil {
 		}
 		List<Bank> banks = user.getBanks();
 		for (Bank bank : banks) {
-			sb.append(bank.getBankId()).append(" ").append(bank.getBankName())
+			sb.append(bank.getType()).append(" ").append(bank.getBankId()).append(" ").append(bank.getBankName())
 					.append("\n");
 		}
 		System.out.println(sb.toString());

@@ -1,5 +1,6 @@
 package com.palm.xml.share.bean;
 
+import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
@@ -10,6 +11,8 @@ import org.simpleframework.xml.Root;
  */
 @Root
 public class Bank {
+	@Attribute
+	private String type;
 	@Element
 	private String bankId;
 	@Element
@@ -18,9 +21,18 @@ public class Bank {
 	public Bank() {
 	}
 
-	public Bank(String bankId, String bankName) {
+	public Bank(String type, String bankId, String bankName) {
+		this.type = type;
 		this.bankId = bankId;
 		this.bankName = bankName;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getBankId() {
