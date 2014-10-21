@@ -18,6 +18,7 @@ import org.xml.sax.XMLReader;
  */
 public class SaxParser {
 	/**
+	 * 读取xml
 	 * 
 	 * @param filePath
 	 */
@@ -31,8 +32,7 @@ public class SaxParser {
 			xmlReader = saxParser.getXMLReader();
 			// 设置解析器 当发现一个标签，由SaxHandler类中的回调方法处理
 			xmlReader.setContentHandler(new SaxHandler());
-			InputSource source = new InputSource(filePath);
-			xmlReader.parse(source);
+			xmlReader.parse(new InputSource(filePath));
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
 		} catch (SAXException e) {
